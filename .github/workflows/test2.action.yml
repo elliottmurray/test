@@ -1,7 +1,7 @@
 # This runs on any change inside the ir2 folder, on any branch.
 # This will show you the output of tests for the application, and a code coverage report on any branch
 # This will deploy the application, database and UI on develop
-name: test.reset
+name: test2.reset
 
 on:
   workflow_dispatch: 
