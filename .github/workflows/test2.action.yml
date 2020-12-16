@@ -1,0 +1,35 @@
+# This runs on any change inside the ir2 folder, on any branch.
+# This will show you the output of tests for the application, and a code coverage report on any branch
+# This will deploy the application, database and UI on develop
+name: test.reset
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  test-run:
+    runs-on: [self-hosted, test-env]
+    defaults:
+      run:
+        working-directory: . 
+    steps:
+      - uses: actions/checkout@v2 # Checks-out to $GITHUB_WORKSPACE
+      - uses: chrislennon/action-aws-cli@v1.1
+      - name: Get Time
+        id: time
+        uses: nanzm/get-time-action@v1.0
+        with:
+          timeZone: 0
+          format: 'YYYY-MM-DD-HH-mm-ss'
+      - name: Usage
+        env:
+          TIME: "${{ steps.time.outputs.time }}"
+        run: |
+          echo $TIME
+
+      - name: hello-world 
+        id: initialize
+        working-directory: . 
+        run: |
+          echo "Hello world"
+        
